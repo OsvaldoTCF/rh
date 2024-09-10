@@ -1,20 +1,52 @@
-import 'package:rhcontrol/io/tela.dart';
+import 'package:intl/intl.dart';
+import 'package:rh/io/tela.dart';
+import 'package:rh/rh/funcionario.dart';
+import 'package:rh/utilities/date.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
+var tela = new Tela();
 
 void main() {
-  var tela = new Tela();
+  Intl.defaultLocale = 'pt_BR';
+  initializeDateFormatting('pt_BR');
 
-  tela.limparTela();
-  tela.printLogo();
+  // inicializa tela
+  initializeScreen();
 
-  var dialog = '''Entre com os dados do Funcionário.
-  AGORA!''';
-  var field = 'Nome';
+  createFuncionarios(3);
 
-  final String s;
-  s = tela.QueryUser(dialog, field);
-  print('\n' + s);
+  //criar cargos
+
+  // instancia a classe funconário
+
+  var f1 = new Funcionario();
+  f1.nome = "Clóvis";
+  f1.mat = 111;
+  f1.sexo = 'M';
+
+  // s = tela.QueryUser(d, f);
+  // print('\n' + s);
 }
 
+void createFuncionarios(int count) {
+  var func = new Funcionario();
+  for (var i = 0; i < count; i++) {
+// para facilitar, cria constantes para usar na função de entrada do usuário
+    const d = 'Entre com os dados do novo Funcionário.';
+    tela.printDialog(d);
+    func.mat = int.parse(tela.QueryUser(d, 'Matrícula'));
+    func.nome = tela.QueryUser('', 'Nome');
+    func.sexo = tela.QueryUser('', 'Sexo');
+    tela.printBlancLine();
+  }
+}
+
+void initializeScreen() {
+  tela.limparTela();
+  var dt = Date.ToString(DateTime.now(), 'dd/mm/yyyy');
+  print('Data do Sistema: ' + dt);
+  tela.printLogo();
+}
 
 // import 'dart:io';
 

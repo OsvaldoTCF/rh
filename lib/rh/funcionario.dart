@@ -1,4 +1,4 @@
-import 'package:rhcontrol/rh/contracheque.dart';
+import 'contracheque.dart';
 
 import 'cargo.dart';
 

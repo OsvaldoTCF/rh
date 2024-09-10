@@ -24,8 +24,15 @@ class Tela {
     print(options);
   }
 
+  void printDialog(String d) {
+    print(d + '\n');
+  }
+
+  void printBlancLine() {
+    print('\n');
+  }
+
   String QueryUser(String dialog, field) {
-    print(dialog + '\n');
     stdout.write(field + ': ');
 
     String? resp = stdin.readLineSync()!;
@@ -33,10 +40,3 @@ class Tela {
     return resp;
   }
 }
-
-
-    // print("DIGITE O NÚMERO DA OPÇÃO QUE DESEJA!");
-    // print("---------------------------------------------");
-    // print("[1] - CADASTRAR NOVO FUNCIONÁRIO");
-    // print("[2] - VERIFICAR DADOS DE FUNCIONÁRIO JÁ CADASTRADO");
-    // print("[3] - SAIR");
